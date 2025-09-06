@@ -1,15 +1,15 @@
+/* THEME 7: TEAL OCEAN */
 /* Base Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 /* Fonts and Layout */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f8f9fa;
-    color: #343a40;
+    background: #e0f2f1;
+    color: #004d40;
     line-height: 1.6;
     display: flex;
     flex-direction: column;
@@ -17,30 +17,27 @@ body {
     padding: 20px;
     min-height: 100vh;
 }
-
 .leaderboard-section {
     margin-top: 20px;
     background: white;
     border-radius: 10px;
-    box-shadow: 0 0 12px rgba(0,0,0,0.15);
+    box-shadow: 0 0 12px rgba(0, 150, 136, 0.2);
     overflow: hidden;
     padding: 25px;
     width: 100%;
     max-width: 950px;
+    border: 1px solid #80cbc4;
 }
-
 .leaderboard-header {
     text-align: center;
     margin-bottom: 20px;
 }
-
 .leaderboard-header h3 {
     font-size: 2rem;
-    color: #004085;
+    color: #00695c;
     margin-bottom: 15px;
     font-weight: 600;
 }
-
 /* Buttons */
 .leaderboard-buttons {
     display: flex;
@@ -49,87 +46,74 @@ body {
     margin-bottom: 20px;
     flex-wrap: wrap;
 }
-
 .leaderboard-buttons button {
     padding: 12px 22px;
     font-size: 1rem;
-    border: 1px solid #007bff;
+    border: 1px solid #009688;
     border-radius: 5px;
     background-color: white;
-    color: #007bff;
+    color: #009688;
     cursor: pointer;
     transition: all 0.2s ease;
 }
-
 .leaderboard-buttons button.active {
-    background-color: #007bff;
+    background-color: #009688;
     color: white;
 }
-
 .leaderboard-buttons button:hover:not(.active) {
-    background-color: #e9ecef;
+    background-color: #e0f2f1;
     transform: translateY(-1px);
 }
-
 /* Theme switch button */
 .theme-switch {
     padding: 10px 20px;
     font-size: 1rem;
-    border: 1px solid #007bff;
+    border: 1px solid #009688;
     background-color: white;
-    color: #007bff;
+    color: #009688;
     border-radius: 5px;
     cursor: pointer;
 }
-
 /* Subject selector */
 #subjectSelector {
     text-align: center;
     margin-bottom: 20px;
 }
-
 #subjectDropdown {
     padding: 10px 15px;
     font-size: 1rem;
-    border: 2px solid #007bff;
+    border: 2px solid #009688;
     border-radius: 5px;
     background-color: white;
-    color: #343a40;
+    color: #004d40;
     cursor: pointer;
     min-width: 250px;
 }
-
 /* Table */
 .leaderboard-table {
     width: 100%;
     border-collapse: collapse;
 }
-
 .leaderboard-table th, .leaderboard-table td {
     padding: 14px;
     border-bottom: 1px solid #e0e0e0;
     text-align: left;
     font-size: 1rem;
 }
-
 .leaderboard-table th {
-    background-color: #007bff;
+    background-color: #009688;
     color: white;
     font-weight: bold;
 }
-
 .leaderboard-table td.rank,
 .leaderboard-table td.score,
 .leaderboard-table td.percentage {
     text-align: center;
     font-weight: 600;
 }
-
-.leaderboard-table td.score { color: #28a745; }
-.leaderboard-table td.percentage { color: #17a2b8; }
-
-.leaderboard-table tbody tr:nth-child(even) { background-color: #f2f2f2; }
-
+.leaderboard-table td.score { color: #00796b; }
+.leaderboard-table td.percentage { color: #26a69a; }
+.leaderboard-table tbody tr:nth-child(even) { background-color: #e0f2f1; }
 /* Responsive */
 @media (max-width: 768px) {
     .leaderboard-buttons { flex-direction: column; gap: 10px; }
@@ -137,7 +121,6 @@ body {
     .leaderboard-table th, .leaderboard-table td { padding: 10px; font-size: 0.95rem; }
     #subjectDropdown { min-width: 100%; }
 }
-
 /* Smooth transitions */
 body, .leaderboard-section, .leaderboard-table, .leaderboard-buttons button, #subjectDropdown, .theme-switch {
     transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
