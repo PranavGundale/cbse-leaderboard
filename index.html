@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CBSE Leaderboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="leaderboard-section">
+        <div class="leaderboard-header">
+            <h3>CBSE Result Leaderboard</h3>
+            <div class="leaderboard-buttons">
+                <button class="active" onclick="displayLeaderboard('overall')">Overall Total Leaderboard</button>
+                <button onclick="displayLeaderboard('best5')">Best of 5 Leaderboard</button>
+                <button onclick="displayLeaderboard('subject')">Subject-wise Leaderboard</button>
+            </div>
+            <div id="subjectSelector" style="display: none;">
+                <select id="subjectDropdown" onchange="displaySubjectLeaderboard()">
+                    <option value="">Select a Subject</option>
+                </select>
+            </div>
+        </div>
+        <table class="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Roll No.</th>
+                    <th>Score</th>
+                    <th>Percentage</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboardTableBody">
+                <!-- Leaderboard content will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+	<script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

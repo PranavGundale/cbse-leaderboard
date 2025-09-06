@@ -1,0 +1,150 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #343a40;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            min-height: 100vh;
+        }
+
+        .leaderboard-section {
+            margin-top: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            padding: 20px;
+            width: 100%;
+            max-width: 950px;
+        }
+
+        .leaderboard-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .leaderboard-header h3 {
+            font-size: 1.8rem; /* Larger title */
+            color: #004085;
+            margin-bottom: 15px; /* Increased margin */
+            font-weight: 600;
+        }
+
+        .leaderboard-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* Increased gap */
+            margin-bottom: 25px; /* Increased margin */
+        }
+
+        .leaderboard-buttons button {
+            padding: 12px 22px; /* Increased padding */
+            font-size: 1.05rem; /* Slightly larger font */
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            background-color: white;
+            color: #007bff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .leaderboard-buttons button.active {
+            background-color: #007bff;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2); /* Added shadow for active state */
+        }
+
+        .leaderboard-buttons button:hover:not(.active) {
+            background-color: #e9ecef;
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+
+        #subjectSelector {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #subjectDropdown {
+            padding: 10px 15px;
+            font-size: 1rem;
+            border: 2px solid #007bff;
+            border-radius: 4px;
+            background-color: white;
+            color: #343a40;
+            cursor: pointer;
+            min-width: 250px;
+            transition: all 0.2s ease;
+        }
+
+        #subjectDropdown:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
+
+        #subjectDropdown:hover {
+            background-color: #f8f9fa;
+        }
+
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .leaderboard-table th, .leaderboard-table td {
+            padding: 12px; /* Increased padding */
+            border-bottom: 1px solid #e0e0e0;
+            text-align: left;
+            font-size: 1rem; /* Consistent font size */
+        }
+
+        .leaderboard-table th {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+
+        .leaderboard-table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .leaderboard-table td.rank {
+            font-weight: bold;
+            text-align: center;
+        }
+        .leaderboard-table td.score {
+            text-align: center;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .leaderboard-table td.percentage {
+            text-align: center;
+            color: #17a2b8; /* A nice cyan for percentage */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .leaderboard-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .leaderboard-buttons button {
+                width: 100%; /* Full width buttons on small screens */
+            }
+            .leaderboard-table th, .leaderboard-table td {
+                padding: 8px; /* Reduced padding for smaller screens */
+                font-size: 0.9rem;
+            }
+            #subjectDropdown {
+                min-width: 200px;
+                font-size: 0.9rem;
+            }
+        }
