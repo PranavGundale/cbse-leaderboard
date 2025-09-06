@@ -4,12 +4,171 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>CBSE Leaderboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Give the link an id for switching -->
+    <link id="theme-link" rel="stylesheet" href="styles.css">
+    <style>
+        /* Settings Icon Styles */
+        .settings-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .settings-icon {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border: 2px solid #007bff;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .settings-icon:hover {
+            background-color: #007bff;
+            transform: rotate(90deg);
+        }
+        
+        .settings-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: #007bff;
+            transition: fill 0.3s ease;
+        }
+        
+        .settings-icon:hover svg {
+            fill: white;
+        }
+        
+        .theme-dropdown {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: white;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            min-width: 180px;
+            display: none;
+            z-index: 1001;
+        }
+        
+        .theme-dropdown.show {
+            display: block;
+            animation: dropdownFade 0.3s ease;
+        }
+        
+        @keyframes dropdownFade {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .theme-dropdown h4 {
+            padding: 12px 15px;
+            margin: 0;
+            background-color: #007bff;
+            color: white;
+            font-size: 14px;
+            border-radius: 6px 6px 0 0;
+        }
+        
+        .theme-option {
+            padding: 10px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s ease;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .theme-option:last-child {
+            border-bottom: none;
+            border-radius: 0 0 6px 6px;
+        }
+        
+        .theme-option:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .theme-option.active {
+            background-color: #e3f2fd;
+            color: #007bff;
+            font-weight: 600;
+        }
+        
+        .theme-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .settings-container {
+                top: 15px;
+                right: 15px;
+            }
+            
+            .theme-dropdown {
+                right: -20px;
+                min-width: 160px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Settings Icon -->
+    <div class="settings-container">
+        <div class="settings-icon" onclick="toggleThemeDropdown()">
+            <svg viewBox="0 0 24 24">
+                <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
+            </svg>
+        </div>
+        <div id="themeDropdown" class="theme-dropdown">
+            <h4>Choose Theme</h4>
+            <div class="theme-option active" onclick="selectTheme(0)">
+                <div class="theme-color" style="background: linear-gradient(45deg, #007bff, #0056b3);"></div>
+                Ocean Blue
+            </div>
+            <div class="theme-option" onclick="selectTheme(1)">
+                <div class="theme-color" style="background: linear-gradient(45deg, #4caf50, #2e7d32);"></div>
+                Forest Green
+            </div>
+            <div class="theme-option" onclick="selectTheme(2)">
+                <div class="theme-color" style="background: linear-gradient(45deg, #ff9800, #f57c00);"></div>
+                Sunset Orange
+            </div>
+            <div class="theme-option" onclick="selectTheme(3)">
+                <div class="theme-color" style="background: linear-gradient(45deg, #9c27b0, #7b1fa2);"></div>
+                Purple Cosmos
+            </div>
+            <div class="theme-option" onclick="selectTheme(4)">
+                <div class="theme-color" style="background: linear-gradient(45deg, #f44336, #d32f2f);"></div>
+                Crimson Red
+            </div>
+            <div class="theme-option" onclick="selectTheme(5)">
+                <div class="theme-color" style="background: linear-gradient(45deg, #607d8b, #455a64);"></div>
+                Slate Dark
+            </div>
+            <div class="theme-option" onclick="selectTheme(6)">
+                <div class="theme-color" style="background: linear-gradient(45deg, #009688, #00796b);"></div>
+                Teal Ocean
+            </div>
+        </div>
+    </div>
+
     <div class="leaderboard-section">
         <div class="leaderboard-header">
             <h3>CBSE Result Leaderboard</h3>
+
             <div class="leaderboard-buttons">
                 <button class="active" onclick="displayLeaderboard('overall')">Overall Total Leaderboard</button>
                 <button onclick="displayLeaderboard('best5')">Best of 5 Leaderboard</button>
@@ -36,7 +195,75 @@
             </tbody>
         </table>
     </div>
-	<script src="data.js"></script>
+    
+    <script src="data.js"></script>
     <script src="script.js"></script>
+    
+    <!-- Enhanced CSS Switcher Script -->
+    <script>
+        const themes = [
+            { name: 'Ocean Blue', file: 'styles.css' },
+            { name: 'Forest Green', file: 'styles2.css' },
+            { name: 'Sunset Orange', file: 'styles3.css' },
+            { name: 'Purple Cosmos', file: 'styles4.css' },
+            { name: 'Crimson Red', file: 'styles5.css' },
+            { name: 'Slate Dark', file: 'styles6.css' },
+            { name: 'Teal Ocean', file: 'styles7.css' }
+        ];
+        
+        let currentTheme = 0;
+        
+        // Original switch function (for the button)
+        function switchStyle() {
+            currentTheme = (currentTheme + 1) % themes.length;
+            document.getElementById('theme-link').setAttribute('href', themes[currentTheme].file);
+            updateActiveTheme();
+        }
+        
+        // New functions for settings dropdown
+        function toggleThemeDropdown() {
+            const dropdown = document.getElementById('themeDropdown');
+            dropdown.classList.toggle('show');
+            
+            // Close dropdown when clicking outside
+            if (dropdown.classList.contains('show')) {
+                document.addEventListener('click', closeDropdownOnClickOutside);
+            }
+        }
+        
+        function selectTheme(themeIndex) {
+            currentTheme = themeIndex;
+            document.getElementById('theme-link').setAttribute('href', themes[themeIndex].file);
+            updateActiveTheme();
+            
+            // Close dropdown
+            document.getElementById('themeDropdown').classList.remove('show');
+            document.removeEventListener('click', closeDropdownOnClickOutside);
+        }
+        
+        function updateActiveTheme() {
+            const options = document.querySelectorAll('.theme-option');
+            options.forEach((option, index) => {
+                if (index === currentTheme) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+        }
+        
+        function closeDropdownOnClickOutside(event) {
+            const dropdown = document.getElementById('themeDropdown');
+            const settingsContainer = document.querySelector('.settings-container');
+            
+            if (!settingsContainer.contains(event.target)) {
+                dropdown.classList.remove('show');
+                document.removeEventListener('click', closeDropdownOnClickOutside);
+            }
+        }
+        
+        // Initialize active theme on page load
+        window.addEventListener('load', updateActiveTheme);
+    </script>
 </body>
 </html>
